@@ -1,0 +1,2 @@
+[data-block-release="vision@0.1.0"] [data-vision-node-card] { width: 100%; min-width: 0; }
+[data-block-release="vision@0.1.0"] [data-vision-node-card] h3 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

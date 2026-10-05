@@ -1,0 +1,102 @@
+[
+  {
+    "key": "remote_enabled",
+    "type": "boolean",
+    "label": "Enable remote analysis",
+    "help": "Off by default. Sends the prepared image, task and schema to OpenAI; API usage is billed. No network call during preparation."
+  },
+  {
+    "key": "api_key_ref",
+    "type": "text",
+    "label": "OpenAI wallet reference",
+    "help": "Complete reference, for example secret://workspace/openai_vision_api. Never enter the key itself."
+  },
+  {
+    "key": "allowed_root",
+    "type": "directory",
+    "label": "Permitted image directory",
+    "help": "Only local files below this directory. Empty uses the application root. URLs and symbolic links are refused."
+  },
+  {
+    "key": "instruction",
+    "type": "textarea",
+    "label": "Default analysis task",
+    "help": "A precise inspection question. The task input overrides it for subsequent image events; image JSON can carry its own task atomically.",
+    "rows": 4
+  },
+  {
+    "key": "result_schema",
+    "type": "json",
+    "label": "Result JSON schema",
+    "help": "Strict object schema: all properties required, additionalProperties:false. Use nullable fields for unknown values. No references or patterns.",
+    "advanced": true,
+    "rows": 12
+  },
+  {
+    "key": "model",
+    "type": "select",
+    "label": "OpenAI model",
+    "help": "Pinned image-capable model. Account access is checked only when you send an image.",
+    "advanced": true,
+    "options": [
+      "gpt-4.1-mini-2025-04-14"
+    ]
+  },
+  {
+    "key": "detail",
+    "type": "select",
+    "label": "Image detail",
+    "help": "Auto balances detail; low/high are explicit provider options. Dimensions are bounded separately.",
+    "advanced": true,
+    "options": [
+      "auto",
+      "low",
+      "high"
+    ]
+  },
+  {
+    "key": "max_side",
+    "type": "integer",
+    "label": "Maximum submitted side (px)",
+    "help": "Preserve aspect ratio and reduce large images. EXIF orientation is applied; metadata is removed.",
+    "advanced": true,
+    "min": 256,
+    "max": 4096
+  },
+  {
+    "key": "max_pixels",
+    "type": "integer",
+    "label": "Maximum source pixels",
+    "help": "Reject excessive decoded images before conversion; no silent crop.",
+    "advanced": true,
+    "min": 65536,
+    "max": 16777216
+  },
+  {
+    "key": "max_bytes",
+    "type": "integer",
+    "label": "Maximum input bytes",
+    "help": "Bound the source file before decoding; default 10 MiB.",
+    "advanced": true,
+    "min": 1024,
+    "max": 20971520
+  },
+  {
+    "key": "timeout_sec",
+    "type": "integer",
+    "label": "Analysis deadline (seconds)",
+    "help": "Stop cancels local processing and closes the request. An already submitted request may still be billed. No automatic retry.",
+    "advanced": true,
+    "min": 1,
+    "max": 300
+  },
+  {
+    "key": "max_output_tokens",
+    "type": "integer",
+    "label": "Maximum output tokens",
+    "help": "Incomplete or invalid JSON produces issues only, never a partial result.",
+    "advanced": true,
+    "min": 128,
+    "max": 8192
+  }
+]
